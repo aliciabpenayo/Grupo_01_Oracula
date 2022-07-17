@@ -11,5 +11,6 @@ routes.post("/signup", userController.store);
 routes.get("/:id/edit", userController.edit);
 routes.put("/:id/edit", userController.update);
 routes.delete("/:id/delete", userController.delete);
+routes.get("/perfil", userController.perfil)
 
 module.exports = routes;

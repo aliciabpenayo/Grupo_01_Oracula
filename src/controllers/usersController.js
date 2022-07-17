@@ -17,6 +17,14 @@ const usersController = {
         res.render('./users/signup', { titulo: "Crear cuenta" });
     },
 
+    login: (req, res) => {
+        res.render('./users/perfil', { titulo: "Mi Perfil" })
+    },
+
+    perfil:(req, res) => {
+        res.render('./users/perfil', { titulo: "Mi Perfil" })
+    },
+
     //Guardar usuario nuevo
     store: (req, res) => {
         //función que busca el mayor ID y devuelve el siguiente
@@ -38,7 +46,8 @@ const usersController = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
             contraseña: req.body.contraseña,
-            fechaDeCreacion: new Date() 
+            imgDePerfil: req.body.profilePicture,
+            fechaDeCreacion: new Date(), 
         }
         
         users.push(userNuevo);

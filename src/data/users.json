@@ -38,5 +38,13 @@
         "apellido": "Moniec",
         "contraseña": "monalisa1",
         "fechaDeCreacion": "2022-06-22T00:28:56.854Z"
+    },
+    {
+        "id": 7,
+        "email": "juancrcabrera@gmail.com",
+        "nombre": "Juan",
+        "apellido": "Cabrera",
+        "imgDePerfil": "IMG_20170601_211254.jpg",
+        "fechaDeCreacion": "2022-07-17T16:55:01.346Z"
     }
 ]
