@@ -17,10 +17,6 @@ const usersController = {
         res.render('./users/signup', { titulo: "Crear cuenta" });
     },
 
-    login: (req, res) => {
-        res.render('./users/perfil', { titulo: "Mi Perfil" })
-    },
-
     perfil:(req, res) => {
         res.render('./users/perfil', { titulo: "Mi Perfil" })
     },
