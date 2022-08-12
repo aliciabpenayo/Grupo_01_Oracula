@@ -2,18 +2,38 @@ const path = require('path');
 const homePath = path.join(__dirname, '../views/home.html');
 const fs = require("fs");
 
+//prueba de conexion a la db 
+const db = require('../database/models');
+const sequelize = db.sequelize;
+
+
+
 
 let products = require('../data/products.json');
 
-let sortear = function(productosASortear){
+let sortear = function (productosASortear) {
     let sorteados = productosASortear.sort(() => Math.random() - 0.5)
     return sorteados;
 }
 
 const mainController = {
+
+    //prueba conectividad 
+    estaConectado: {
+        funciona: (req, res) => {
+            db.Category.findByPk(1)
+                .then(category => {
+                    console.log(category.nombre)
+                    if(category.nombre == 'Juegos'){
+                    res.send('Funciona!!');
+                    }
+                });
+        }
+    },
+
     //home
     home: (req, res) => {
-      
+
         //traemos todos los productos destacados
         let productosDestacadosEnOrden = products.filter(item => item.esDestacado == true);
         //desordenamos los productos destacados para que la vista nos muestre al azar cada vez     
@@ -23,11 +43,11 @@ const mainController = {
         let novedadesEnOrden = products.filter(item => item.esNovedad == true);
         let novedades = sortear(novedadesEnOrden);
 
-         //hacemos lo mismo con las ofertas
-         let ofertasEnOrden = products.filter(item =>(item.esOferta == true && item.descuento != ""));
-         let ofertas = sortear(ofertasEnOrden);
+        //hacemos lo mismo con las ofertas
+        let ofertasEnOrden = products.filter(item => (item.esOferta == true && item.descuento != ""));
+        let ofertas = sortear(ofertasEnOrden);
 
-        res.render('home', {products, productosDestacados, novedades, ofertas});
+        res.render('home', { products, productosDestacados, novedades, ofertas });
     },
 
     //category
@@ -40,12 +60,12 @@ const mainController = {
         //desordenamos los productos destacados para que la vista de categoria nos muestre 5 al azar cada vez     
         let productosDestacados = sortear(productosDestacadosEnOrden);
 
-            //hacemos lo mismo con las novedades
-            let novedadesEnOrden = productos.filter(item => item.esNovedad == true);
-       
-            let novedades = sortear(novedadesEnOrden);
-            
-        res.render('category', {productos, productosDestacados, novedades });
+        //hacemos lo mismo con las novedades
+        let novedadesEnOrden = productos.filter(item => item.esNovedad == true);
+
+        let novedades = sortear(novedadesEnOrden);
+
+        res.render('category', { productos, productosDestacados, novedades });
     }
 };
 

@@ -1,1 +1,5 @@
+#Ignora la carpeta node modules 
 node_modules 
+
+#Ignora los archivos relacionados a Keys 
+.env

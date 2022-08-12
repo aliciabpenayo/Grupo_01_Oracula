@@ -7,5 +7,7 @@ routes.get("/", mainController.home);
 //ruta de categoria 
 routes.get("/category/:categoria", mainController.category)
 
+routes.get("/testconexion", mainController.estaConectado.funciona);
+
 
 module.exports = routes;
